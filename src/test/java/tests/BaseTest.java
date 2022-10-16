@@ -5,6 +5,7 @@ import drivers.MobileDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import pages.OnboardingPage;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -18,6 +19,7 @@ public class BaseTest {
     @BeforeEach
     void startDriver() {
         open();
+        skipOnboarding();
     }
 
     @AfterEach
@@ -28,6 +30,10 @@ public class BaseTest {
     static void setUpSelenide() {
         Configuration.browser = MobileDriver.class.getName();
         Configuration.browserSize = null;
+    }
+
+    static void skipOnboarding() {
+        new OnboardingPage().skipOnboarding();
     }
 }
 
